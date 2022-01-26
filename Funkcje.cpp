@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//deklaracja prawie wszystkich funkcji
+
 void menu(char wybor);
 void wyswietlPlansze(int tab[10][10], int tab2[10][10], bool X);
 void zerowaniePlanszy(int tab[10][10]);
@@ -21,7 +23,7 @@ bool strzelanie(int tab1[10][10], int tab2[10][10], int tab3[10][10],bool losowo
 void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int tab22[10][10]);
 void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int tab22[10][10]);
 
-void gra(char drugi)
+void gra(char drugi) //funkcja otwierajaca sie po wybraniu zacznij gre w menu
 {
 	system("cls");
 	cout << "Wybierz opcje gry:" << endl << "1. Gra dwuosobowa." << endl << "2. Gra jednoosobowa." << endl << "3. Powrot" << endl;
@@ -35,7 +37,7 @@ void gra(char drugi)
 		int tab12[10][10]{};
 		int tab21[10][10]{};
 		int tab22[10][10]{};
-		graDwuosobowa(tab11, tab12, tab21, tab22);
+		graDwuosobowa(tab11, tab12, tab21, tab22); //Zaczecie gry dwuosobowej
 	}
 	else
 		if (drugi == '2')
@@ -45,7 +47,7 @@ void gra(char drugi)
 			int tab12[10][10]{};
 			int tab21[10][10]{};
 			int tab22[10][10]{};
-			graJednoosobowa(tab11, tab12, tab21, tab22);
+			graJednoosobowa(tab11, tab12, tab21, tab22); //Zaczecie gry jednoosobowej
 		}
 		else
 			if (drugi == '3')
@@ -59,7 +61,7 @@ void gra(char drugi)
 			}
 }
 
-void zasady()
+void zasady() //zasady
 {
 	system("cls");
 	cout << "Zasady gry w statki:" << endl;
@@ -75,7 +77,7 @@ void zasady()
 	menu('0');
 }
 
-void autor()
+void autor() //dodatkowe informacje
 {
 	system("cls");
 	cout << "Autor: Milosz Krajczok" << endl;
@@ -87,7 +89,7 @@ void autor()
 	menu('0');
 }
 
-void menu(char wybor)
+void menu(char wybor) //Tutaj sie program zaczyna
 {
 	cout << "SSS   TTT    A    TTT   K K   I" << endl;
 	cout << "S      T    A A    T    K K   I" << endl;
@@ -107,38 +109,38 @@ void menu(char wybor)
 	if (wybor == '1')
 	{
 		cout << "Wybrales opcje 1" << endl;
-		gra(wybor);
+		gra(wybor); //przejscie dalej
 
 	}
 	else
 		if (wybor == '2')
 		{
 			cout << "Wybrales opcje 2" << endl;
-			zasady();
+			zasady(); //pokazanie zasad
 		}
 		else
 			if (wybor == '3')
 			{
 				cout << "Wybrales opcje 3" << endl;
-				autor();
+				autor(); //pokazanie autora
 			}
 			else
 				if (wybor == '4')
 				{
 					system("cls");
 					cout << "Dziekuje za gre!" << endl;
-					exit(0);
+					exit(0); //Zakoñczenie programu
 				}
 				else
 				{
 					system("cls");
 					cout << "ERROR: Prosze wpisac poprawna liczbe!" << endl;
-					menu(wybor);
+					menu(wybor); //B³¹d wprowadzania danych wiêc Menu na nowo siê odpala
 				}
 
 }
 
-void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int tab22[10][10])
+void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int tab22[10][10]) //Rozpoczêcie gry dwuosobowej
 {
 	int ileSt = 0;
 	int masztowiec = 4;
@@ -149,38 +151,38 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 	char liczbac;
 	char czynnosc = '0';
 	bool gra = false;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 2; i++) //Tworzenie mapy przez dwoch graczy
 	{
-		while (ileSt != 10)
+		while (ileSt != 10) //Musz¹ zostaæ stworzone wszystkie statki aby pêtla siê zakoñczy³a
 		{
-			if (gra == true)
+			if (gra == true) //Jeœli zosta³a wygenerowana koniec
 			{
 				system("cls");
 				break;
 			}
-			if ((ileSt == 1 && masztowiec != 3) || (ileSt == 3 && masztowiec != 2) || (ileSt == 6 && masztowiec != 1))
+			if ((ileSt == 1 && masztowiec != 3) || (ileSt == 3 && masztowiec != 2) || (ileSt == 6 && masztowiec != 1)) //Jeœli ju¿ wystarczaj¹ca iloœæ danego masztowca
 				masztowiec -= 1;
 			if (gracz == false)
 			{
 				cout << "Gracz 1 ustawia statki na planszy:" << endl << "Ustaw statek o " << masztowiec << " masztach." << endl;
-				wyswietlPlansze(tab11, tab12, false);
+				wyswietlPlansze(tab11, tab12, false); //Wyswietla tylko tab11
 			}
 			else
 			{
 				cout << "Gracz 2 ustawia statki na planszy:" << endl << "Ustaw statek o " << masztowiec << " masztach." << endl;
-				wyswietlPlansze(tab21, tab22, false);
+				wyswietlPlansze(tab21, tab22, false); //wyswietla tuylko tab21
 			}
 			cout << "Wprowadz wspolrzedne poczatku statku oraz kierunek (1-gora, 2-prawo, 3-dol, 4-lewo) np.A10 1" << endl << "Jest tez opcja generowanie losowej mapy, nalezy wpisac 'L' lub 'l'" << endl;
 			cout << "Trzecia opcja jest wyczyszczenie dotychczasowej tworzonej mapy (wpisz 'W' lub 'w')." << endl;
 			cout << "Zawsze mozesz wrocic do menu wpisujac 'M' lub 'm'." << endl;
 			cin >> litera;
-			if (litera == 'M' || litera == 'm')
+			if (litera == 'M' || litera == 'm')//Jeœli chce wróciæ 
 			{
 				system("cls");
 				menu('0');
 				exit(0);
 			}
-			if (litera == 'W' || litera == 'w')
+			if (litera == 'W' || litera == 'w') //Czyszczenie i zerowanie danych
 			{
 				if (gracz == false)
 				{
@@ -193,9 +195,9 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 				system("cls");
 				continue;
 			}
-			while (true)
+			while (true) //Nieskoñczona
 			{
-				if (litera == 'l' || litera == 'L')
+				if (litera == 'l' || litera == 'L') //Losuj
 				{
 					system("cls");
 					if (gracz == false)
@@ -214,20 +216,20 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 					if (czynnosc == '1')
 					{
 						system("cls");
-						continue;
+						continue; //losuj ponownie
 					}
 					if (czynnosc == '2')
 					{
 						system("cls");
-						gra = true;
-						break;
+						gra = true; //Jest chêtny na grê
+						break; //zakoñcz
 					}
 					if (czynnosc == '3')
 					{
 						system("cls");
 						ileSt = 0;
 						masztowiec = 4;
-						break;;
+						break;;// zakoñcz
 					}
 					system("cls");
 					cout << "ERROR: Wprowadz prawidlowe dane." << endl;
@@ -235,7 +237,7 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 				}
 				break;
 			}
-			if (czynnosc == '3' || czynnosc == '2')
+			if (czynnosc == '3' || czynnosc == '2') //sprawdzanie ktora opcja na wyjscie
 			{
 				if (gra == false)
 				{
@@ -249,7 +251,7 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 				continue;
 			}
 			cin >> liczbac;
-			if (liczbac >= '1' && liczbac <= '9')
+			if (liczbac >= '1' && liczbac <= '9') //jesli trafia w jakakikolwiek wiersz
 			{
 				liczba = liczbac - 48;
 				cin >> liczbac;
@@ -269,7 +271,7 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 				system("cls");
 				if (gracz == false)
 				{
-					if (tworzenieStat(tab11, liczba - 1, litera - 65, kierunek - 49, masztowiec))
+					if (tworzenieStat(tab11, liczba - 1, litera - 65, kierunek - 49, masztowiec)) //tworzenie statku
 					{
 						cout << "Statek wprowadzono powyslnie!" << endl;
 						ileSt += 1;
@@ -314,7 +316,7 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 	}
 	gracz = false;
 	bool czy1 = false;
-	while (czy1 == false)
+	while (czy1 == false) //zaczynamy fynkcje strzelania
 	{
 		if (gracz == false)
 		{
@@ -355,7 +357,7 @@ void graDwuosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int 
 	}
 }
 
-void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int tab22[10][10])
+void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], int tab22[10][10]) //Gra z botem
 {
 	int ileSt = 0;
 	int masztowiec = 4;
@@ -366,7 +368,7 @@ void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], in
 	char liczbac;
 	char czynnosc = '0';
 	bool gra = false;
-	while (ileSt != 9)
+	while (ileSt != 9) //to samo co wczesniej
 	{
 		if (gra == true)
 		{
@@ -381,7 +383,7 @@ void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], in
 		cout << "Trzecia opcja jest wyczyszczenie dotychczasowej tworzonej mapy (wpisz 'W' lub 'w')." << endl;
 		cout << "Zawsze mozesz wrocic do menu wpisujac 'M' lub 'm'." << endl;
 		cin >> litera;
-		if (litera == 'M' || litera == 'm')
+		if (litera == 'M' || litera == 'm') //menu
 		{
 			system("cls");
 			menu('0');
@@ -389,7 +391,7 @@ void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], in
 		}
 		if (litera == 'W' || litera == 'w')
 		{
-			zerowaniePlanszy(tab11);
+			zerowaniePlanszy(tab11); //wyczyszczenie planszy
 			ileSt = 0;
 			masztowiec = 4;
 			system("cls");
@@ -397,7 +399,7 @@ void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], in
 		}
 		while (true)
 		{
-			if (litera == 'l' || litera == 'L')
+			if (litera == 'l' || litera == 'L') //to samo co w poprzedniej
 			{
 				system("cls");
 				losowaMapa(tab11);
@@ -478,7 +480,7 @@ void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], in
 			continue;
 		}
 	}
-	losowaMapa(tab21);
+	losowaMapa(tab21); //losowanie dla bota
 	gra = false;
 	ileSt = 0;
 	masztowiec = 4;
@@ -491,7 +493,7 @@ void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], in
 			cout << "Wykonujesz ruch:" << endl;
 			system("pause");
 			system("cls");
-			cout << "Ty:	Twoja Mapa					Twoje strzaly" << endl;
+			cout << "Ty:		Twoja Mapa					Twoje strzaly" << endl;
 			wyswietlPlansze(tab11, tab12, true);
 			if (strzelanie(tab12, tab21, tab11,false))
 			{
@@ -509,7 +511,7 @@ void graJednoosobowa(int tab11[10][10], int tab12[10][10], int tab21[10][10], in
 			cout << "BOT wykonuje ruch:" << endl;
 			system("pause");
 			system("cls");
-			if (strzelanie(tab22, tab11, tab21,true))
+			if (strzelanie(tab22, tab11, tab21,true)) //losowe strzelanie
 			{
 				cout << "BOT wygral!" << endl;
 				system("pause");
@@ -527,7 +529,7 @@ bool strzelanie(int tab1[10][10], int tab2[10][10], int tab3[10][10], bool losow
 	string tekst = "xxxxx";
 	char literka = 'Q';
 	char liczba = 'Q';
-	if (losowo == false)
+	if (losowo == false) //sorawdzanie czy gracz czy bot
 	{
 		tekst = "xxx";
 		literka = 'x';
@@ -535,7 +537,7 @@ bool strzelanie(int tab1[10][10], int tab2[10][10], int tab3[10][10], bool losow
 		cout << "Wprowadz wspolrzedne w ktore chcesz strzelic np. A4" << endl << "Aby sie poddac i wrocic do menu wpisz 'M' lub 'm'" << endl;
 		cin >> tekst;
 	}
-	else
+	else //strzelanie bota
 	{
 		mt19937 generator(time(nullptr));
 		uniform_int_distribution<int> pole(0, 9);
@@ -602,7 +604,7 @@ bool strzelanie(int tab1[10][10], int tab2[10][10], int tab3[10][10], bool losow
 		system("cls");
 		cout << "ERROR: Wprowadzono zle dane. Prosze sprobowac ponownie." << endl;
 		wyswietlPlansze(tab3, tab1, true);
-		strzelanie(tab1, tab2, tab3,false);
+		strzelanie(tab1, tab2, tab3,false); //kolejna proba
 	}
 	if (tab1[literka - 65][liczba - 49] == 0)
 	{
@@ -630,16 +632,16 @@ bool strzelanie(int tab1[10][10], int tab2[10][10], int tab3[10][10], bool losow
 	return false;
 }
 
-bool sprawdzCzyZatop(int tab[10][10], int tab1[10][10], int tab3[10][10], int y, int x, int masztowiec)
+bool sprawdzCzyZatop(int tab[10][10], int tab1[10][10], int tab3[10][10], int y, int x, int masztowiec) //sprawdzanie czy zatopiony
 {
 	bool pion = true;
 	int ile = 0;
-	if (masztowiec == 1)
+	if (masztowiec == 1)//jesli jednomasztowiec
 	{
 		zatop(tab, tab1, tab3, y, x, masztowiec, pion);
 		return true;
 	}
-	for (int i = 0; i < 2 * masztowiec; i++)
+	for (int i = 0; i < 2 * masztowiec; i++) //sprawdzanie ilus kratek w pionie i poziomie w ka¿d¹ strone od trafionego punktu
 	{
 		for (int j = 0; j < masztowiec; j++)
 		{
@@ -689,9 +691,9 @@ bool sprawdzCzyZatop(int tab[10][10], int tab1[10][10], int tab3[10][10], int y,
 	return false;
 }
 
-bool zatop(int tab1[10][10], int tab2[10][10], int tab3[10][10], int y, int x, int masztowiec, bool pion)
+bool zatop(int tab1[10][10], int tab2[10][10], int tab3[10][10], int y, int x, int masztowiec, bool pion) //zatop
 {
-	if (pion == true)
+	if (pion == true) //jesli statek jest pionowo
 	{
 		for (int i = 0; i < masztowiec + 2; i++)
 		{
@@ -699,7 +701,7 @@ bool zatop(int tab1[10][10], int tab2[10][10], int tab3[10][10], int y, int x, i
 			{
 				if (x - 1 + j > 9 || x - 1 + j < 0 || y - masztowiec + i > 9 || y - masztowiec + i < 0)
 					continue;
-				if ((i >= 1) && (i <= masztowiec) && (j == 1))
+				if ((i >= 1) && (i <= masztowiec) && (j == 1)) //punkty gdzie jest statek
 				{
 					tab2[x - 1 + j][y - masztowiec + i] = 1;
 				}
@@ -711,7 +713,7 @@ bool zatop(int tab1[10][10], int tab2[10][10], int tab3[10][10], int y, int x, i
 			}
 		}
 	}
-	else
+	else //jesli jest poziomo
 	{
 		for (int i = 0; i < 3; i++)
 		{
@@ -734,7 +736,7 @@ bool zatop(int tab1[10][10], int tab2[10][10], int tab3[10][10], int y, int x, i
 	return true;
 }
 
-void wyswietlPlansze(int tab[10][10], int tab2[10][10], bool X)
+void wyswietlPlansze(int tab[10][10], int tab2[10][10], bool X) //wyswietla plansze jedna albo dwie - zalezy od X
 {
 	char literka = 'A';
 	for (int i = 0; i < 11; i++)
@@ -810,11 +812,11 @@ void wyswietlPlansze(int tab[10][10], int tab2[10][10], bool X)
 	}
 }
 
-bool tworzenieStat(int tab[10][10], int y, int x, int kierun, int masztowiec) //licza litera
+bool tworzenieStat(int tab[10][10], int y, int x, int kierun, int masztowiec) //Tworzenie okreslonego statku w okreslonyum miejscu w okreslonym kierunku
 {
 	if (tab[x][y] == 0)
 	{
-		if (kierun == 0)
+		if (kierun == 0) //gora
 		{
 			for (int i = 0; i < masztowiec; i++)
 			{
@@ -841,7 +843,7 @@ bool tworzenieStat(int tab[10][10], int y, int x, int kierun, int masztowiec) //
 			}
 			return true;
 		}
-		if (kierun == 1)
+		if (kierun == 1) //prawo
 		{
 			if (x + masztowiec - 1 > 9)
 				return false;
@@ -868,7 +870,7 @@ bool tworzenieStat(int tab[10][10], int y, int x, int kierun, int masztowiec) //
 			}
 			return true;
 		}
-		if (kierun == 2)
+		if (kierun == 2) //lewo
 		{
 			if (y + masztowiec - 1 > 9)
 				return false;
@@ -895,7 +897,7 @@ bool tworzenieStat(int tab[10][10], int y, int x, int kierun, int masztowiec) //
 			}
 			return true;
 		}
-		if (kierun == 3)
+		if (kierun == 3)//dol
 		{
 			for (int i = 0; i < masztowiec; i++)
 			{
@@ -929,10 +931,9 @@ bool tworzenieStat(int tab[10][10], int y, int x, int kierun, int masztowiec) //
 
 
 
-void losowaMapa(int tab[10][10])
+void losowaMapa(int tab[10][10])//losowaniem mapy
 {
 	zerowaniePlanszy(tab);
-	//tab = {};
 	int masztowiec = 4;
 	bool czy = false;
 	int ktoryst = 1;
@@ -969,7 +970,7 @@ void losowaMapa(int tab[10][10])
 
 }
 
-void zerowaniePlanszy(int tab[10][10])
+void zerowaniePlanszy(int tab[10][10])//zerowanie planszy 
 {
 	for (int i = 0; i < 10; i++)
 	{
@@ -980,7 +981,7 @@ void zerowaniePlanszy(int tab[10][10])
 	}
 }
 
-bool czyWygral(int tab[10][10])
+bool czyWygral(int tab[10][10]) //sprawdzanie warunku zwyciestwa
 {
 	for (int i = 0; i < 10; i++)
 	{
