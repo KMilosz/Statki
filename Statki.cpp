@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+	cout << "XD";
 	menu('0');
 	return 0;
 }

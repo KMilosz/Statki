@@ -996,63 +996,63 @@ bool czyWygral(int tab[10][10])
 }
 
 
-bool przesunStatek(int tab[10][10], int y, int x, int masztowiec, int kierunek)
-{
-	int ilePol = 0;
-	bool jest = false;
-	if (kierunek == 0 || kierunek == 2)
-	{
-		for (int i = 0; i < masztowiec;i++)
-		{
-			for (int j = 0;j < masztowiec;j++)
-			{
-				if (y + masztowiec - 1 - i > 9)
-				{
-					ilePol = 0;
-					jest = false;
-					break;
-				}
-				if (y - i < 0)
-				{
-					return false;
-				}
-				if (tab[x][y - i + j] == masztowiec)
-				{
-					ilePol += 1;
-				}
-				else
-				{
-					ilePol = 0;
-					break;
-				}
-				if (ilePol == masztowiec)
-				{
-					if (kierunek == 0 && y-i-1<10)
-					{
-						if (tab[x][y - i - 1] == 0)
-						{
-							for (int q = 0;q < masztowiec+3;q++)
-							{
-								for (int w = 0;w < 3 ; w++)
-								{
-									if (w == 1 && q > 0 && q < masztowiec + 1)
-									{
-										tab[x - 1 + w][y - i - 2 + q] = masztowiec;
-										continue;
-									}
-									if (y-1-2+q>=0 && x-1+w>=0 && x-1+w<=9)
-									{
-										if (tab[x - 1 + w][y - i - 2 + q] == 0)
-										{
-											tab[x - 1 + w][y - i - 2 + q] = 5;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
+//bool przesunStatek(int tab[10][10], int y, int x, int masztowiec, int kierunek)
+//{
+//	int ilePol = 0;
+//	bool jest = false;
+//	if (kierunek == 0 || kierunek == 2)
+//	{
+//		for (int i = 0; i < masztowiec;i++)
+//		{
+//			for (int j = 0;j < masztowiec;j++)
+//			{
+//				if (y + masztowiec - 1 - i > 9)
+//				{
+//					ilePol = 0;
+//					jest = false;
+//					break;
+//				}
+//				if (y - i < 0)
+//				{
+//					return false;
+//				}
+//				if (tab[x][y - i + j] == masztowiec)
+//				{
+//					ilePol += 1;
+//				}
+//				else
+//				{
+//					ilePol = 0;
+//					break;
+//				}
+//				if (ilePol == masztowiec)
+//				{
+//					if (kierunek == 0 && y-i-1<10)
+//					{
+//						if (tab[x][y - i - 1] == 0)
+//						{
+//							for (int q = 0;q < masztowiec+3;q++)
+//							{
+//								for (int w = 0;w < 3 ; w++)
+//								{
+//									if (w == 1 && q > 0 && q < masztowiec + 1)
+//									{
+//										tab[x - 1 + w][y - i - 2 + q] = masztowiec;
+//										continue;
+//									}
+//									if (y-1-2+q>=0 && x-1+w>=0 && x-1+w<=9)
+//									{
+//										if (tab[x - 1 + w][y - i - 2 + q] == 0)
+//										{
+//											tab[x - 1 + w][y - i - 2 + q] = 5;
+//										}
+//									}
+//								}
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
